@@ -1,36 +1,24 @@
-var postcss = require('postcss')
-require('colors')
-
-module.exports = postcss.plugin('postcss-wrap', function (opts) {
-  opts = opts || {}
-
-  var selectorsBlacklist = [
-    /^from/,
-    /^to/,
-    /\%$/
-  ]
-
-  if (opts.skip instanceof Array) {
-    selectorsBlacklist = selectorsBlacklist.concat(opts.skip)
-  } else if (opts.skip instanceof RegExp) {
-    selectorsBlacklist.push(opts.skip)
-  }
-
-  return function (css, result) {
-    if (!opts.selector) {
-      result.warn('opts.selector must be specified'.red)
-      return
-    }
-
-    css.walkRules(function (rule) {
-      rule.selectors = rule.selectors.map(function (selector) {
-        for (var i = 0; i < selectorsBlacklist.length; i++) {
-          if (selector.match(selectorsBlacklist[i])) {
-            return selector
-          }
+var postcss = require('postcss');
+require('colors');
+module.exports = postcss.plugin('postcss-wrap', function (opts_) {
+    var opts = opts_ || {};
+    var skip = opts.skip instanceof Array ? opts.skip : (opts.skip ? [opts.skip] : []);
+    var selectorsBlacklist = [/^from/, /^to/, /\%$/].concat(skip);
+    return function (css, result) {
+        if (!opts.selector) {
+            result.warn('opts.selector must be specified'.red);
+            return;
         }
-        return opts.selector + ' ' + selector
-      })
-    })
-  }
-})
+        css.walkRules(walker);
+        css.walkAtRules(walker);
+
+        function walker(node) {
+            var selectors = node.selectors;
+            node.selectors = selectors.map(function (selector) {
+                return selectorsBlacklist.find(function (matcher) {
+                    return selector.match(matcher);
+                }) || opts.selector + ' ' + selector;
+            });
+        }
+    };
+});
