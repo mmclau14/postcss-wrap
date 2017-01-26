@@ -1,30 +1,24 @@
 {
-  "name": "postcss-wrap",
-  "version": "0.0.5",
-  "description": "PostCSS plugin to wrap css rules in a namespace e.g .my-selector {} to .wrap .my-selector {}",
-  "keywords": [
-    "postcss",
-    "css",
-    "postcss-plugin",
-    "wrap",
-    "selector"
-  ],
-  "author": "Ruslan Savenok <ruslan.savenok@gmail.com>",
-  "license": "MIT",
-  "repository": "ruslansavenok/postcss-wrap",
-  "bugs": {
-    "url": "https://github.com/ruslansavenok/postcss-wrap/issues"
-  },
-  "homepage": "https://github.com/ruslansavenok/postcss-wrap",
-  "dependencies": {
-    "colors": "^1.1.2",
-    "postcss": "^5.0.13"
-  },
-  "devDependencies": {
-    "ava": "^0.9.1",
-    "eslint": "^1.10.3"
-  },
-  "scripts": {
-    "test": "ava && eslint *.js"
-  }
+    "name": "postcss-wrap",
+    "version": "0.0.5",
+    "description": "PostCSS plugin to wrap css rules in a namespace e.g .my-selector {} to .wrap .my-selector {}",
+    "keywords": ["postcss", "css", "postcss-plugin", "wrap", "selector"],
+    "author": "Ruslan Savenok <ruslan.savenok@gmail.com>",
+    "license": "MIT",
+    "repository": "mmclau14/postcss-wrap",
+    "bugs": {
+        "url": "https://github.com/mmclau14/postcss-wrap/issues"
+    },
+    "homepage": "https://github.com/mmclau14/postcss-wrap",
+    "dependencies": {
+        "colors": "^1.1.2",
+        "postcss": "^5.0.13"
+    },
+    "devDependencies": {
+        "ava": "^0.9.1",
+        "eslint": "^1.10.3"
+    },
+    "scripts": {
+        "test": "ava && eslint *.js"
+    }
 }
